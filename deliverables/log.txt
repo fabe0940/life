@@ -1,0 +1,65 @@
+Assignment 3 Programming Log
+============================
+
+6 February
+----------
+
+Created project folder with basic makefile and git version contol.
+
+Created `design.txt` detailing an approximate idea of what the final
+application should look like.
+
+Created `main.cpp` with function prototypes from the design document.
+
+Implemented usage() function.
+
+Implemented printGeneration() function.
+
+printGeneration() will fail if there is no current generation, which
+occurs when generation == NULL. Added a check against NULL to
+printGeneration().
+
+Added `void error(char* msg)` function, which will print msg to stderr
+and then exit with a status of 1. This is used internally to exit
+gracefully when an invalid situation arrises.
+
+Created and implemented a `void initializeGeneration(void)` function,
+which creates a random generation and assigns it to the generation
+global variable.
+
+Implemented nextGeneration(). This function currently doesn't do much,
+as it relies upon getNextStatus(), which is not implemented yet.
+
+Commented my existing code. I should have been doing this all along,
+but at least it's in there now. I'll make a point of doing this as I
+code from here on out.
+
+Created and implemented `int validIndex(int index)`, which checks if
+index is a valid index in the generation array. This is to ensure
+that my code doesn't accidentally check out-of-bounds values.
+
+Created and implemented a function `int xor(int a, int b)`.
+
+Implemented getNextStatus(). If a cell is currently live, it becomes
+dead. If it is currently dead, then its new value is the exclusive
+or of the status of it's neighbors.
+
+At this point, my program started failing badly. Each generation
+besides the first consisted entirely of dead cells. Eventually,
+I realized that I had forgotten a break statement inside of a switch,
+causing the dead cell calculations to fall into the live cell
+calculations, which would then set the cell to dead. Thus, all cells
+were being set to dead. After adding a break statement, the program
+began to work as expected again.
+
+I now began testing the game of life to make sure it worked as
+desired. After many different runs of various sizes and ages, I have
+found no errors, and will thus consider this program complete.
+
+While continuing to play with this program, I started noticing some
+odd behaviour in the cells at the start and end of the array. After
+digging through the relavant functions, I found an instance where
+I had typed the wrong variable name into a comparison against the
+array bounds, thus accessing an array index outside of the array
+and introducing garbage values to my calculations. After fixing this,
+everything was once again behaving as expected.
