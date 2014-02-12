@@ -1,3 +1,16 @@
+/* main.cpp
+ *
+ * CS 121 Bolden         g++ (GCC) 4.4.7       Mason Fabel
+ * 02/12                 x86_64 GNU/Linux      fabe0940@vandals.uidaho.edu
+ *
+ * Description of program
+ * 1-Dimentional Game of Life
+ * This is a simple game of life based on the following rules:
+ * - Live cells die
+ * - Dead cells with exactly one live neigbor are revived
+ *-----------------------------------------------------------------
+ */
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -146,7 +159,7 @@ int validIndex(int index) {
 
 	/* Check for invalid indexes */
 	result = 1;
-	if(result < 0 || result >= size) result = 0;
+	if(index < 0 || index >= size) result = 0;
 
 	return result;
 }
